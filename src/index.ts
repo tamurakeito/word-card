@@ -1,8 +1,10 @@
 import readline from "readline";
 import { Question } from "./types";
 import { readLineAsync } from "./common/stdin";
-import Mensetsu from "../json/mensetsu.json";
-import Osce from "../json/osce.json";
+// import Mensetsu from "../json/mensetsu.json";
+// import Osce from "../json/osce.json";
+import OsceDisease from "../json/osce-disease.json";
+import Yokomoji from "../json/kokushi-yokomoji.json";
 
 const question = (question: string): Promise<string> => {
   const readlineInterface = readline.createInterface({
@@ -24,14 +26,14 @@ async function prompt(msg: string): Promise<string> {
 
 const main = async () => {
   console.log("実行するモードを選択してください");
-  console.log("1: 就活面接対策" + "\n2: OSCE");
+  console.log("1: 国試対策（長い横文字）" + "\n2: OSCE（鑑別疾患）");
   let array: Array<Question>;
   switch (await readLineAsync(">> ")) {
     case "1":
-      array = Mensetsu.mensetsu;
+      array = Yokomoji.kokushiYokomoji;
       break;
     case "2":
-      array = Osce.osce;
+      array = OsceDisease.osce;
       break;
     default:
       console.log("番号を選択してください。");
